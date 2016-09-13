@@ -1,11 +1,14 @@
 Hi <b> there </b> World
-<input id="inp" type=text value="wow"> <br><br>
+<input id="inp" type=text value="wow "> <br><br>
 <input type=button value="Run Wow" onclick="{
 	myOut = document.getElementById('myArea')
-	for (myCount = 1; myCount <= 100; myCount++){
-	myOut.innerHTML += inp.value
-	if(myCount == 2){
-		myOut.innerHTML += 'Cool '
+	alert(inp.value)
+	for (myCount = 1; myCount <= 10; myCount++){
+	myOut.innerHTML += '<br> '
+	myOut.innerHTML += myCount + ' '	+ inp.value 
+	 
+	if((myCount == 3) || (myCount == 7)){
+		myOut.innerHTML += '<br> cool   '
 			}
 		}
 	}"> <br><br>
