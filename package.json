@@ -9,6 +9,7 @@
   },
  "scripts": {
     "start": "do something"
+ }
   "engines": {
     "node": "4.0.0"
   },
