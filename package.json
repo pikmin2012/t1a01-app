@@ -5,13 +5,10 @@
   "main": "index.js",
   "dependencies": {
     "express": "^4.13.3"
+    
   },
-{
-
-  "scripts": {
+ "scripts": {
     "start": "do something"
-  },
-}
   "engines": {
     "node": "4.0.0"
   },
