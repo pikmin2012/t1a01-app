@@ -6,7 +6,7 @@
   "dependencies": {
     "express": "^4.13.3"
   },
-  {
+{
 
   "scripts": {
     "start": "do something"
