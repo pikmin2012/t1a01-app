@@ -1,0 +1,42 @@
+
+
+
+<h1 align=center>t1a02-show by Ryan </h1>
+
+<input id="myInput" type=text value="3"> <br><br>
+
+
+<input type=button value="Loop Add" onclick="{
+
+  myOut = document.getElementById('myArea')
+  myIn  = document.getElementById('myInput').value
+  myTotal = 0;
+  myNumber = myIn;
+  
+  for (myCount = 1; myCount <= myIn ; myCount++){
+     
+         myTotal += + myNumber
+
+    
+	
+	
+     myOut.innerHTML = myIn + ' repeat adding =' + myTotal
+	 
+  }
+  if(+ myIn <= 0){
+	 myOut.innerHTML = 'enter a positive number'
+	 }
+
+}"> <br><br>
+
+
+
+<div id="myArea" > Your output will go here <br></div> <br>
+
+<input type=button value="Show myIn.value" onclick="{
+  
+   alert(myIn)
+
+}">
+
+
