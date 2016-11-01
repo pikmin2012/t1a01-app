@@ -1,0 +1,97 @@
+<input id="rock" type=button value="rock" onclick="myFunction(this.id)">
+<input id="paper" type=button value="paper" onclick="myFunction(this.id)">
+<input id="scissors" type=button value="scissors" onclick="myFunction(this.id)">
+<div id="myAtemmpts"></div>
+<div id="winstreak"></div>
+<div id="output"></div>
+<div id="choices"></div>
+<img id="user" width="400px"></img>
+vs
+<img id="comp" width="400px"></img>
+<img id="result" width="400px"></img>
+<script>
+var attempts = 0;
+var winstreak = 0;
+function myFunction(x) {
+    
+var userChoice = x;
+ attempts++;
+document.getElementById("myAtemmpts").innerHTML = attempts;
+
+var computerChoice = Math.random();
+
+if (computerChoice < 0.34) {
+    computerChoice = "rock";
+    
+    
+} else if(computerChoice <= 0.66) {
+    computerChoice = "paper";
+} else {
+    computerChoice = "scissors";
+}
+document.getElementById("choices").innerHTML = userChoice + " vs " + computerChoice;
+document.getElementById('user').src = userChoice +".png";
+
+document.getElementById('comp').src = computerChoice +".png";
+
+    if(userChoice == computerChoice) {  
+        document.getElementById("output").innerHTML = "It's a tie";
+        document.getElementById('result').src ="draw.png";
+        winstreak = 0;
+        document.getElementById("winstreak").innerHTML = winstreak;
+    return "The result is a tie!";
+     
+}
+if(userChoice === "rock") {
+    if(computerChoice === "scissors") {
+        document.getElementById("output").innerHTML = "You win";
+        document.getElementById('result').src ="win.png";
+        winstreak++;
+        document.getElementById("winstreak").innerHTML = winstreak;
+        return "rock wins";
+        
+    } else {
+        
+        document.getElementById("output").innerHTML = "You lose";
+        document.getElementById('result').src ="lose.png";
+        winstreak = 0
+        document.getElementById("winstreak").innerHTML = winstreak;
+        return "paper wins";
+    }
+
+
+}else if(userChoice === "paper") {
+    if(computerChoice === "rock") {
+        document.getElementById("output").innerHTML = "You win";
+        document.getElementById('result').src ="win.png";
+        winstreak++
+        document.getElementById("winstreak").innerHTML = winstreak;
+        return "rock wins";
+    } else {
+        document.getElementById('result').src ="lose.png";
+        document.getElementById("output").innerHTML = "You lose";
+        winstreak = 0;
+        document.getElementById("winstreak").innerHTML = winstreak;
+        return "paper wins";
+    }
+}
+if(userChoice === "scissors") {
+    if(computerChoice === "paper") {
+        document.getElementById('result').src ="win.png";
+        document.getElementById("output").innerHTML = "You win";
+        winstreak++;
+        document.getElementById("winstreak").innerHTML = winstreak;
+        return "rock wins";
+    } else {
+        document.getElementById('result').src ="lose.png";
+        document.getElementById("output").innerHTML = "You lose";
+        winstreak = 0;
+        document.getElementById("winstreak").innerHTML = winstreak;
+        return "paper wins";
+    }
+    
+}
+
+};
+
+</script>

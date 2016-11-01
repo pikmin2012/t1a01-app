@@ -1,0 +1,202 @@
+<table style="width:100%" border="1">
+  <tr>
+    <th>THis</th>
+    <th>is</th> 
+    <th>A</th>
+  </tr>
+  <tr>
+    <td>table</td>
+    <td>i</td> 
+    <td>hate</td>
+  </tr>
+  <tr>
+    <td>mash potatoes</td>
+    <td>hehe</td> 
+    <td>xD</td>
+  </tr>
+</table>
+basic-webpage.html
+
+
+<h1 align=center>basic web page by fred </h1>
+
+
+
+This is a web page<br>
+
+<div id="myQuestion" >?</div>
+<input type=button value="click me" onclick="{
+   document.getElementById('myQuestion').innerHTML = 'Hello World'
+}"><br>
+
+
+
+
+My picture<img src="T1A02-open-mouth-fred..png" width=400><br>
+Image from the web <img width=400 src="http://animalia-life.com/data_images/sphynx-cat/sphynx-cat1.jpg"><br>
+
+
+<a href="http://www.google.ca">http://www.google.ca</a><br>
+
+This is <b>bold</b> this is <i>italic</i>. This is both   <br>
+
+<table border=1>
+
+  <tr><td>Jill</td><td>Smith</td><td>50</td></tr>
+
+  <tr><td>Eve</td><td>Jackson</td><td>94</td></tr>
+
+</table><br>
+
+Here is a list of my fav 5 foods
+<ul>
+   <li> Pizza
+   <li> KD
+</ul>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=button value="GoUp"onclick="{
+  my01 = document.getElementById('myDiv01')
+  my01.style.top = parseInt(my01.style.top) -20 + 'px'
+
+}">
+<br> 
+<input type=button value="GoLeft"onclick="{
+  my01 = document.getElementById('myDiv01')
+  my01.style.left = parseInt(my01.style.left) - 20 + 'px'
+
+}">
+
+<input type=button value="GoRight"onclick="{
+  my01 = document.getElementById('myDiv01')
+  my01.style.left = parseInt(my01.style.left) + 20 + 'px'
+
+}">
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=button value="GoDown"onclick="{
+  my01 = document.getElementById('myDiv01')
+  my01.style.top = parseInt(my01.style.top) + 20 + 'px'
+
+}">
+
+
+
+
+
+<div id ="myDiv01" style=position:relative;left:0;top:0>Wow</div>
+
+
+<script>
+  (function() {
+  // A cross-browser hook event function, tucked at the end to keep
+  // it out of the way
+  var hookEvent = makeHookEventFunction();
+
+  // Get the element, and our initial position
+  var element = document.getElementById("myDiv01"),
+    left = 0,
+    top = 0;
+
+  // Set the initial position on the element
+  element.style.left = left + "px";
+  element.style.top = top + "px";
+
+  // Handle the 'keydown' event
+  hookEvent(document, "keydown", function(event) {
+    // Work with 'which' or 'keyCode', whichever the browser gives us
+    switch (event.which || event.keyCode) {
+      case 37: // Left
+        left = Math.max(0, left - 10);
+        break;
+      case 39: // Right
+        left += 10;
+        break;
+      case 38: // Up
+        top = Math.max(-1000, top - 10);
+        break;
+      case 40: // Down
+        top += 10;
+        break;
+      default:
+        // Not for us
+        return;
+    }
+    
+    // Update the element's position
+    element.style.left = left + "px";
+    element.style.top = top + "px";
+    
+    // Since we've handled the key event, prevent it from
+    // propagating and prevent its default action
+    event.stopPropagation();
+    event.preventDefault();
+  });
+  
+  // ------------------------------------------------------------
+
+  // A cross-browser "hook event" function, see my answer at
+  // http://stackoverflow.com/questions/23799296/js-li-tag-onclick-not-working-on-ie8/23799448#23799448
+  // for details.
+  function makeHookEventFunction() {
+    var div;
+
+    // The function we use on standard-compliant browsers
+    function standardHookEvent(element, eventName, handler) {
+      element.addEventListener(eventName, handler, false);
+      return element;
+    }
+
+    // The function we use on browsers with the previous Microsoft-specific mechanism
+    function oldIEHookEvent(element, eventName, handler) {
+      element.attachEvent("on" + eventName, function(e) {
+        e = e || window.event;
+        e.preventDefault = oldIEPreventDefault;
+        e.stopPropagation = oldIEStopPropagation;
+        handler.call(element, e);
+      });
+      return element;
+    }
+
+    // Polyfill for preventDefault on old IE
+    function oldIEPreventDefault() {
+      this.returnValue = false;
+    }
+
+    // Polyfill for stopPropagation on old IE
+    function oldIEStopPropagation() {
+      this.cancelBubble = true;
+    }
+
+    // Return the appropriate function; we don't rely on document.body
+    // here just in case someone wants to use this within the head
+    div = document.createElement('div');
+    if (div.addEventListener) {
+      div = undefined;
+      return standardHookEvent;
+    }
+    if (div.attachEvent) {
+      div = undefined;
+      return oldIEHookEvent;
+    }
+    throw "Neither modern event mechanism (addEventListener nor attachEvent) is supported by this browser.";
+  }
+
+})();
+</script>
+	<textarea id="myname" rows=4 cols=70 wrap>Enter your name here </textarea><br>
+<input type=text id="myText1" value="clickme!" style="position:relative;left:0;top:0" onMouseOver="{
+	    
+		document.getElementById('myText1').style.top = Math.floor(Math.random()*1000)-200 + 'px'
+		document.getElementById('myText1').style.left = Math.floor(Math.random()*1000)-200 + 'px'
+	
+		document.all.myText1.value = 'WOW';
+	     
+	
+	}"   onclick= "{
+
+		document.all.myText1.value = 'You Win'
+		document.bgColor = 'red';
+	}">
+
+
+

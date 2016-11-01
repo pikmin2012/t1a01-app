@@ -1,0 +1,45 @@
+<font size=40>
+    
+    
+    T1A05-Array by Ryan <br>
+    
+<script>
+    myIntArray = new Array()
+    myArray = new Array();
+    myIntArray[0] =     45   
+    myIntArray[1] =   3434634 
+    myIntArray[2] =    45
+    myIntArray[3] =    346
+    myIntArray[4] =    34345
+    myIntArray[5] =    3456
+    myIntArray[6] =    3345
+    myIntArray[8] =    56546
+    myIntArray[7] =    Math.floor(Math.random() * 888) + 111;
+    myIntArray[9] =    746
+    document.writeln(myIntArray[7]+'<br> Now print all 10 <br>')
+  
+    for (myCount = 0;  myCount <= 9; myCount++){
+       document.writeln(myCount + ' = ' + myIntArray[myCount] + '<br>')
+    }
+    
+    document.writeln('<br> Now The hard part 100  numbers<br>')
+    
+    document.writeln('<br> set the array<br>')
+    myMax = 100
+    for (myCount = 0;  myCount < myMax; myCount++){
+       
+       myArray[myCount] = Math.floor(Math.random() * 888) + 111;
+        
+    }
+    
+    document.writeln('<br> Print the array<br>')
+    for (myCount = 0;  myCount < myMax; myCount++){
+       
+        document.writeln(myCount + ' = ' + myArray[myCount] + '<br>')
+    }
+    
+    
+    
+    
+    
+</script>
