@@ -1,0 +1,158 @@
+
+<head>
+<style>
+.droptarget {
+    float: left;
+    width: 100px;
+    height: 35px;
+    margin: 15px;
+    padding: 10px;
+    border: 1px solid #aaaaaa;
+}
+</style>
+</head>
+<script>
+document.myx = 40
+</script>
+<body onload="{
+alert('Page loaded')
+
+
+}">
+    Says page loaded when you go on page <br>
+<body onunload="{
+alert('Bye')
+}">
+    
+    When you leave it says bye Doesnt work with most browsers <br>
+    wasd for movement on key <br>
+    on focus <br>
+    on drag <br>
+    onclick <br>
+    
+
+<body onkeyDown= "{
+ //alert(String.fromCharCode(event.keyCode))
+  if(String.fromCharCode(event.keyCode) =='A'){
+      my01 = document.getElementById('myOut')
+      my01.style.left = parseInt(my01.style.left) -5 + 'px'
+  }
+  if(String.fromCharCode(event.keyCode) =='D'){
+      my01 = document.getElementById('myOut')
+      my01.style.left = parseInt(my01.style.left) +5 + 'px'
+  }
+  if(String.fromCharCode(event.keyCode) =='W'){
+      my01 = document.getElementById('myOut')
+      my01.style.top = parseInt(my01.style.top) -5 + 'px'
+  }
+  if(String.fromCharCode(event.keyCode) =='S'){
+      my01 = document.getElementById('myOut')
+      my01.style.top = parseInt(my01.style.top) +5 + 'px'
+  }
+}">
+
+Links: <br>
+<a href="http://www.w3schools.com/tags/ref_eventattributes.asp"> Events </a>
+
+
+<h1 align=center> Basic Javascript Events by Ryan</h1>
+
+
+Note: Tap the capital "A" to see the object move!
+
+</h3>Instructions</h3>
+Pass: Add to this page several links to websites that have information about javascript events. 
+Good: Add something on this page that activates for every possible javascript event. 
+Note: identify if events only work on touch screen computers.
+
+
+<br>
+
+<div id="myOut" style= "position:absolute;left:500;top:100;">Move me</div>
+
+<br><br>
+
+
+
+<input type=button value="up" onclick="{
+   document.all.myOut.style.top = parseInt(document.all.myOut.style.top)-20+'px' 
+}"><br>
+
+
+
+<input type=button value="left" onclick="{
+   document.all.myOut.style.left = parseInt(document.all.myOut.style.left)-20+'px'
+}">
+
+
+<b id='myCopy' onMouseOver = "{
+   getElementById('myCopy').innerHTML +=' Copy me, '	
+}"> Copy me!</b> <br><br>
+
+<p>A function is triggered when one of the input fields get focus. The function changes the background-color of the input field.</p>
+First name: <input type="text" id="fname" onfocus="myFunction(this.id)"><br>
+Last name: <input type="text" id="lname" onfocus="myFunction(this.id)">
+
+
+
+<script>
+
+function myFunction(x) {
+    
+    if(document.getElementById(x).style.background != "yellow"){
+    document.getElementById(x).style.background = "yellow";
+
+    }else if (document.getElementById(x).style.background = "yellow"){
+
+      document.getElementById(x).style.background = "blue";  
+      
+    }
+}
+</script>
+
+<br>At the bottom of every page make sure you include the following button:<br>
+
+<input type=button value="Back" style="font-size:25px" onclick="{window.history.back()}"><br><br>
+
+<p>Drag the p element back and forth between the two rectangles:</p>
+
+<div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)">
+  <p ondragstart="dragStart(event)" draggable="true" id="dragtarget">Drag me!</p>
+</div>
+
+<div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+<p style="clear:both;"><strong>Note:</strong> drag events are not supported in Internet Explorer 8 and earlier versions or Safari 5.1 and earlier versions.</p>
+
+<p id="demo"></p>
+
+<script>
+function dragStart(event) {
+    event.dataTransfer.setData("Text", event.target.id);
+    document.getElementById("demo").innerHTML = "Started to drag the p element";
+    document.getElementById("dragtarget").style.background = "blue"
+}
+
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+function drop(event) {
+    event.preventDefault();
+    var data = event.dataTransfer.getData("Text");
+    event.target.appendChild(document.getElementById(data));
+    document.getElementById("demo").innerHTML = "The p element was dropped";
+}
+
+</script>
+
+
+<input id="copy" type="text" oncopy="myFunction()" value="Try to copy this text">
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+    document.getElementById("copy").innerHTML.value = "You copied text!"
+}
+</script>
