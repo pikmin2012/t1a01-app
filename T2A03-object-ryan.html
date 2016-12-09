@@ -1,0 +1,59 @@
+<script>
+    
+function myStudent(myAge, myName, myImg){
+   this.myStudentAge = myAge
+   this.myStudentName = myName
+   this.myStudentImage = myImg
+   this.myBetterInfo = function(){
+      document.getElementById('myDiv1').innerHTML = ' My name is ' + this.myStudentName + ' <br>' + ' My age is ' + myAge;
+      document.getElementById('img').src = "people/" + this.myStudentName +".jpg";
+   };
+
+
+}
+
+function wiki(){
+    Name = document.getElementById('Name').value.replace(" ", "_");
+console.log(Name);
+document.getElementById('wiki').innerHTML = Name;
+document.getElementById('wiki').href = "https://en.wikipedia.org/wiki/" + Name;
+}
+
+
+</script>
+
+
+
+
+<input type=button value="Show Fred" onclick="{
+  myFred = new myStudent(20,'Fred','http')
+  myFred.myBetterInfo()
+}">
+
+
+<input type=button value="Show Mary" onclick="{
+myMary = new myStudent(107,'Mary','http')
+myMary.myBetterInfo()
+}">
+<input type=button value="Show Shrek" onclick="{
+myMary = new myStudent(4,'Shrek','http')
+myMary.myBetterInfo()
+}">
+
+
+
+
+<div id='myDiv1'>stuff here </div>
+
+
+<img id='img' width="500"><img>
+<a id='wiki' href="" > </a> <br>
+
+<input value="a" style= "position:absolute;left:500;top:100;" id="Name" />
+
+<input type=button value="wiki" onclick="wiki();">
+
+
+
+
+

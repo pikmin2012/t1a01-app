@@ -1,0 +1,63 @@
+<script>
+//Create the audio tag
+var soundFile = document.createElement("audio");
+
+var bb = document.createElement("audio"); 
+
+//Load the sound file (using a source element for expandability)
+var src = document.createElement("source");
+var b = document.createElement("source");
+src.src = "number1" + ".mp3";
+b.src = "smash" + ".mp3";
+soundFile.appendChild(src);
+bb.appendChild(b);
+bb.preload = "auto";
+soundFile.preload = "auto";
+src.preload = "auto";
+b.preload = "auto";
+//Load the audio tag 
+//It auto plays as a fallback
+
+soundFile.load();
+soundFile.volume = 0.000000;
+soundFile.play();
+
+bb.load();
+bb.volume = 0.000000;
+bb.play();
+
+//Plays the sound
+function play() {
+   //Set the current time for the audio file to the beginning
+   soundFile.currentTime = 5;
+   soundFile.volume = 1;
+
+
+   //Due to a bug in Firefox, the audio needs to be played after a delay
+   setTimeout(function(){soundFile.play();},1);
+}
+function play2() {
+   //Set the current time for the audio file to the beginning
+  
+   bb.currentTime = 30.01;
+   bb.volume = 1;
+
+   //Due to a bug in Firefox, the audio needs to be played after a delay
+   setTimeout(function(){soundFile.play();},1);
+}
+var speed = 1;
+function speedup(){ 
+ speed = speed + 0.1;
+   soundFile.playbackRate = speed;
+   bb.playbackRate = speed;
+}
+function speeddown(){ 
+   speed = speed - 0.1;
+   soundFile.playbackRate = speed;
+   bb.playbackRate = speed;
+}
+</script>
+<button onclick="play()">Try it</button>
+<button onclick="play2()">Try it</button>
+<button onclick="speedup()">speedup</button>
+<button onclick="speeddown()">speeddown</button>
