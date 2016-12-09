@@ -1,0 +1,248 @@
+<body background="bg.jpg" onload="myTimer = setInterval('myScroll()', 50)" >
+
+
+<center><img id="image" src='spaceship.png' style= "" width="" >
+<canvas id='canvas'></canvas></center>
+
+
+
+<script> 
+  var img = null, canvas = null;
+ //  Initialize image and canvas
+	   img = document.getElementById('image');
+	   canvas = document.getElementById('canvas');
+	   
+	   if(!canvas || !canvas.getContext){
+	       canvas.parentNode.removeChild(canvas);
+	   } else {
+	       img.style.position = 'absolute';
+	       img.style.visibility = 'hidden';
+	   }
+	   rotateImage(0);
+	   
+function rotateImage(degree)
+
+	{
+        if(document.getElementById('canvas')){
+           var cContext = canvas.getContext('2d');
+           var cw = img.width, ch = img.height, cx = 0, cy =0;
+           
+          
+           //   Calculate new canvas size and x/y coorditates for image
+           switch(degree){
+                case 90:
+                    cw = img.height;
+                    ch = img.width;
+                    cy = img.height * (-1);
+                    break;
+                case 180:
+                    cx = img.width * (-1);
+                    cy = img.height * (-1);
+                    break;
+                case 270:
+                    cw = img.height;
+                    ch = img.width;
+                    cx = img.width * (-1);
+                    
+                    break;
+           }
+
+            //  Rotate image            
+		  canvas.setAttribute('width', cw);
+			canvas.setAttribute('height', ch);
+			cContext.rotate(degree * Math.PI / 180);
+			cContext.drawImage(img, cx, cy);
+        } else {
+            //  Use DXImageTransform.Microsoft.BasicImage filter for MSIE
+            switch(degree){
+                case 0: image.style.filter = 'progid:DXImageTransform.Microsoft.BasicImage(rotation=0)'; break;
+                case 90: image.style.filter = 'progid:DXImageTransform.Microsoft.BasicImage(rotation=1)'; break;
+                case 180: image.style.filter = 'progid:DXImageTransform.Microsoft.BasicImage(rotation=2)'; break;
+                case 270: image.style.filter = 'progid:DXImageTransform.Microsoft.BasicImage(rotation=3)'; break;
+            }
+        }
+	}
+
+
+myBgPosY = 0;     // present vertical position
+myBgPosX = 0;    // present horizonal position
+
+
+myBgHeight = 1920;    // height of background image
+myBgWidth = 1080;  // width of background image
+
+
+myBgSpeedYdown = 0;    // speed moving down 
+myBgSpeedXright = 0;    // speed moving right
+
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+
+
+function myScroll() {
+
+
+   myBgPosY +=  myBgSpeedYdown;
+   myBgPosX +=  myBgSpeedXright;
+
+
+
+if(myBgSpeedXright == 0 || myBgSpeedYdown == 0){
+  myBgSpeedXright = 0.5;
+   myBgSpeedYdown = 0.5;
+}
+   myBgObject.style.backgroundPosition = myBgPosX + " " + myBgPosY +"px";
+   
+   setInterval(function(){
+        if(myBgSpeedXright>0.5){
+          myBgSpeedXright -= 0.5;
+          
+        }
+        if(myBgSpeedXright<-0.5){
+          myBgSpeedXright += 0.5;
+        
+        }
+        if(myBgSpeedYdown<-0.5){
+          myBgSpeedYdown += 0.5;
+          
+        }
+        if(myBgSpeedYdown>0.5){
+          myBgSpeedYdown -= 0.5;
+        }
+       
+    }, 2500);
+    
+    
+    
+}
+
+
+
+
+
+
+ (function() {
+  // A cross-browser hook event function, tucked at the end to keep
+  // it out of the way
+  var hookEvent = makeHookEventFunction();
+
+  // Get the element, and our initial position
+ 
+   
+
+  // Set the initial position on the element
+  
+
+  // Handle the 'keydown' event
+  hookEvent(document, "keydown", function(event) {
+    // Work with 'which' or 'keyCode', whichever the browser gives us
+    switch (event.which || event.keyCode) {
+      case 37: // Left
+       if(myBgSpeedXright < 49){
+        myBgSpeedXright += 10;
+        rotateImage(270);
+       
+        break;
+       }
+      case 39: // Right
+       if(myBgSpeedXright > -49){
+        myBgSpeedXright -= 10;
+        rotateImage(90);
+        break;
+       }
+      case 38: // Up
+       if(myBgSpeedYdown < 49){
+        myBgSpeedYdown += 10;
+        rotateImage(0);
+        
+
+        break;
+       }
+      case 40: // Down
+        if(myBgSpeedYdown > -49){
+        myBgSpeedYdown -= 10;
+        rotateImage(180);
+        break;
+        }
+        
+        
+        
+        
+        
+        
+        
+      default:
+        // Not for us
+        return;
+        
+    }
+
+    // Update the element's position
+
+    
+    // Since we've handled the key event, prevent it from
+    // propagating and prevent its default action
+    event.stopPropagation();
+    event.preventDefault();
+  });
+  
+  // ------------------------------------------------------------
+
+  // A cross-browser "hook event" function, see my answer at
+  // http://stackoverflow.com/questions/23799296/js-li-tag-onclick-not-working-on-ie8/23799448#23799448
+  // for details.
+  function makeHookEventFunction() {
+    var div;
+
+    // The function we use on standard-compliant browsers
+    function standardHookEvent(element, eventName, handler) {
+      element.addEventListener(eventName, handler, false);
+      return element;
+    }
+
+    // The function we use on browsers with the previous Microsoft-specific mechanism
+    function oldIEHookEvent(element, eventName, handler) {
+      element.attachEvent("on" + eventName, function(e) {
+        e = e || window.event;
+        e.preventDefault = oldIEPreventDefault;
+        e.stopPropagation = oldIEStopPropagation;
+        handler.call(element, e);
+      });
+      return element;
+    }
+
+    // Polyfill for preventDefault on old IE
+    function oldIEPreventDefault() {
+      this.returnValue = false;
+    }
+
+    // Polyfill for stopPropagation on old IE
+    function oldIEStopPropagation() {
+      this.cancelBubble = true;
+    }
+
+    // Return the appropriate function; we don't rely on document.body
+    // here just in case someone wants to use this within the head
+    div = document.createElement('div');
+    if (div.addEventListener) {
+      div = undefined;
+      return standardHookEvent;
+    }
+    if (div.attachEvent) {
+      div = undefined;
+      return oldIEHookEvent;
+    }
+    throw "Neither modern event mechanism (addEventListener nor attachEvent) is supported by this browser.";
+  }
+
+})();
+
+</script>
+
+
+
+
+
+<script>        // This object must be after the body tag
+   myBgObject = eval('document.body');  
+</script>
